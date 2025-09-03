@@ -2,28 +2,70 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>App Redirect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App-Redirect</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .button-container a {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #007aff; /* Apple Blue */
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .button-container a:hover {
+      background-color: #005bb5;
+    }
+  </style>
   <script>
     function redirectUser() {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
       const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
       const Android = /android/i.test(userAgent);
 
+      const redirectText = document.getElementById('redirect-text');
+      const testflightButtons = document.getElementById('testflight-buttons');
+
       if (iOS) {
-        window.location.href = 'DEIN_TESTFLIGHT_LINK';
+        redirectText.classList.add('hidden');
+        testflightButtons.classList.remove('hidden');
       } else if (Android) {
-        window.location.href = 'DEIN_GOOGLE_PLAY_STORE_LINK';
+        window.location.href = 'https://play.google.com/store/apps/details?id=com.JYMMiNGmbH.JYMMiN_SQUATS';
       } else {
-        // Optional: Weiterleitung für Desktop-Nutzer
+        // Optionale Weiterleitung für Desktop-Nutzer oder als Fallback
         window.location.href = 'DEIN_WEBLINK_ODER_FALLBACK_PAGE';
       }
     }
 
-    // Die Weiterleitung sofort auslösen
-    redirectUser();
+    window.onload = redirectUser;
   </script>
 </head>
 <body>
-  <p>Sie werden weitergeleitet...</p>
+  <p id="redirect-text">Sie werden weitergeleitet...</p>
+  
+  <div id="testflight-buttons" class="hidden">
+    <h1>JYMMiN Testversionen für iOS</h1>
+    <div class="button-container">
+      <a href="https://testflight.apple.com/join/cPUEhd4p">FACE ACTIVE herunterladen</a>
+      <a href="https://testflight.apple.com/join/gFUHghYK">SQUATS herunterladen</a>
+    </div>
+  </div>
 </body>
 </html>
