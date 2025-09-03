@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>App Redirect</title>
+  <script>
+    function redirectUser() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+      const Android = /android/i.test(userAgent);
+
+      if (iOS) {
+        window.location.href = 'DEIN_TESTFLIGHT_LINK';
+      } else if (Android) {
+        window.location.href = 'DEIN_GOOGLE_PLAY_STORE_LINK';
+      } else {
+        // Optional: Weiterleitung für Desktop-Nutzer
+        window.location.href = 'DEIN_WEBLINK_ODER_FALLBACK_PAGE';
+      }
+    }
+
+    // Die Weiterleitung sofort auslösen
+    redirectUser();
+  </script>
+</head>
+<body>
+  <p>Sie werden weitergeleitet...</p>
+</body>
+</html>
