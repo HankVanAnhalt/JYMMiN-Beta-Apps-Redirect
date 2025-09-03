@@ -37,7 +37,7 @@
   <script>
     function redirectUser() {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+      const iOS = /iPhone/.test(userAgent) && !window.MSStream;
       const Android = /android/i.test(userAgent);
 
       const redirectText = document.getElementById('redirect-text');
@@ -72,8 +72,7 @@
 
   <div id="unsupported-message" class="hidden">
     <h1>Nicht unterstütztes Gerät</h1>
-    <p>Diese Seite ist für die mobile Nutzung auf iOS- oder Android-Geräten optimiert.</p>
-    <p>Bitte besuche uns von einem unterstützten Gerät aus, um die App herunterzuladen.</p>
+    <p>Öffne diese Seite auf einem Smartphone!</p>
   </div>
 </body>
 </html>
